@@ -1,0 +1,45 @@
+VPC - Setup
+ DemoVPC - 10.0.0.0/16
+ PriavteSubnetA
+ PrivateSubnetB
+ PublicSubnetA: 10.0.0.0/24  -- 256IP
+ PublicSubnetB: 10.0.1.0/24  -- 256IP
+ PrivateSubnetA: 10.0.16.0/20 -- 4096IP
+ PrivateSubnetB: 10.0.32.0/20 -- 4096 IP
+
+ Now Create Route Tables
+ PublicRoutable: Associate Public Subntes to it
+ PriavteRouteTable: Asscociate Private Subnets to it
+
+ Now create Internet GateWay
+ DemoIGW -- Attach that to DEmoVPC
+
+ Now edit route table.
+ 1) Edit Public route table and route traffic from DemoIGW.
+
+ Now Create Instance in PublicSubnetA
+ Try to access that instance using pem key.
+ ssh -i Public.pem ec2-user@3.235.165.51
+
+NAT Instance
+Use Amazon linux AMI
+Create security group and allow http,https,icmp and ssh i that group. 
+create nat instance in public subnet
+Change private route table and traffic from nat instance.
+Nat instance having limited capabilities.
+We need to set inbound and outbound rules.
+
+Nat Gateway
+Create a Nat Gayway in public subnet
+Edit the route table, instead of nat instance add nat gateway
+
+Network ACL(Nacl)
+
+VPc Peering:
+Create VPC Perring connection and edit both route tables.
+
+VPC Endpoint
+1) can Create interface endpoints: which provision ENI as an entry point, we can attach security group to it.
+2) Default gate way endpoints -- For s3 and DynamoDB
+
+Create and IAM role for ec2 instance to access s3 service.
